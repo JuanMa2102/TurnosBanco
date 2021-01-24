@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\DB;
 use App\Models\customer;
 use App\Providers\RouteServiceProvider;
+use Illuminate\Support\Facades\Validator;
 
 use Illuminate\Http\Request;
 
@@ -24,6 +25,7 @@ class TurnoController extends Controller
     public function store(Request $request)
     {
         $turn = customer::create([
+            'name' => $request->Nombre,
             'turnNumber' => $request->folio,
             'catoperation_id' => $request->operation,
         ]);

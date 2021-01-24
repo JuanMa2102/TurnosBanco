@@ -5,9 +5,16 @@
 			
 			<div class="col-span-2 border-4">2</div>
 			<div class="row-span-2 col-span-2 border-4">
+			<x-auth-validation-errors class="mb-4" :errors="$errors" />
 				<form method="POST" action="{{ route('turno') }}">
 				@csrf
 						<div class="mt-2">
+
+							<div class="group border-indigo-500 hover:bg-white mt-4">
+								<x-jet-label for="operation" value="{{ __('Nombre') }}" />	
+								<input id="Nombre" name="Nombre" type="text" class="text-indigo-500 " required autofocus ></input>
+							</div>
+
 							<div class="mt-4">
 							<x-jet-label for="operation" value="{{ __('Email') }}" />
 							<select id="operation" name="operation" class="block mt-1 w-full appearance-none">

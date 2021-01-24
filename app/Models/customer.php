@@ -12,5 +12,6 @@ class customer extends Model
     protected $fillable = [
         'catoperation_id',
         'turnNumber',
+        'name',
     ];
 }

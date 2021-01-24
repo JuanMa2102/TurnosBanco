@@ -10,9 +10,10 @@ class TicketController extends Controller
     public function mostrarTicket($id)
     {
         $turn = DB::table('customers')
-            ->select('turnNumber','created_at','catoperation_id')
+            ->select('turnNumber','created_at','catoperation_id', 'name')
             ->where("id","=",$id)
             ->get();
+            
         $operacion = DB::table('catoperations')
         ->select('description')
         ->where("id","=",$turn[0]->catoperation_id)

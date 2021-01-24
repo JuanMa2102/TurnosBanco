@@ -17,6 +17,7 @@ class CreateCustomersTable extends Migration
             $table->id();
             $table->foreignId('catoperation_id')->constrained();
             $table->string('turnNumber', 10);
+            $table->string('name', 100);
             $table->timestamps();
         });
     }
