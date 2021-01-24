@@ -28,14 +28,7 @@ class TurnoController extends Controller
             'catoperation_id' => $request->operation,
         ]);
 
-        $operacion = DB::table('catoperations')
-        ->select('description')
-        ->where("id","=",$turn->catoperation_id)
-        ->get();
-
-        $operacion[0]->description = strtoupper($operacion[0]->description);
-        return view('Cliente.ticket',compact('turn','operacion'));
-   
+        return redirect()->route('ticket', ['id' => $turn->id ]);
     }
 
 }

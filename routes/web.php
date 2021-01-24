@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TurnoController;
+use App\Http\Controllers\TicketController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -31,6 +32,6 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 
 Route::get('/turno', [TurnoController::class, 'getOperations'])->name('turno.getOperations');
 Route::post('/turno', [TurnoController::class, 'store'])->name('turno');
-Route::get('/ticket', function () {
-    return view('Cliente/ticket');
-});
+
+
+Route::get('ticket/{id}', [TicketController::class, 'mostrarTicket'])->name('ticket');;
