@@ -49,16 +49,8 @@
                 </button>
                 
                 <div>
-                @if (Route::has('register'))
-                            <p class="text-gray-600 text-sm text-center">¿no tienes cuenta?
-                            <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('register') }}" >
-                                    Registrate
-                            </a>
-                @endif
-
                
                 </div>
-
             </div>
         </form>
     </x-jet-authentication-card>

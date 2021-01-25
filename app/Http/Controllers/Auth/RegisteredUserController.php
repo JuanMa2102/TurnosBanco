@@ -9,6 +9,7 @@ use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\DB;
 
 class RegisteredUserController extends Controller
 {
@@ -37,15 +38,23 @@ class RegisteredUserController extends Controller
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|confirmed|min:8',
         ]);
-
-        Auth::login($user = User::create([
+       
+        $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-        ]));
+        ]);
 
-        event(new Registered($user));
+        $admin = DB::table('users')
+                ->where('administrador', '<>', false)
+                ->get();
+        
+        $nameAdmin = $admin[0]->name;
 
-        return redirect(RouteServiceProvider::HOME);
+        $users = DB::table('users')
+                ->where('administrador', '<>', true)
+                ->get();
+        
+        return view('administrador.index', compact('users','nameAdmin'));
     }
 }

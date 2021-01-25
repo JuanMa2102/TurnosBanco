@@ -31,8 +31,22 @@ class AuthenticatedSessionController extends Controller
         $request->authenticate();
 
         $request->session()->regenerate();
+        //$caj = $request;
+        // $users = DB::table('users')
+        //         ->where('isAdmin', '<>', true)
+        //         ->get();
+                //return $users;
 
-        return redirect(RouteServiceProvider::HOME);
+        return redirect()->route('fakeLogin');
+        //return view('cashier.index', compact('users'));
+
+        // $turn = customer::create([
+        //     'turnNumber' => $request->folio,
+        //     'catoperation_id' => $request->operation,
+        // ]);
+
+        // return redirect()->route('ticket', ['id' => $turn->id ]);
+    
     }
 
     /**

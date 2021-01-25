@@ -25,6 +25,7 @@
                         <x-jet-dropdown align="right" width="60">
                             <x-slot name="trigger">
                                 <span class="inline-flex rounded-md">
+                                 <!-- <button type="button" > -->
                                     <button type="button" class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:bg-gray-50 hover:text-gray-700 focus:outline-none focus:bg-gray-50 active:bg-gray-50 transition ease-in-out duration-150">
                                         {{ Auth::user()->currentTeam->name }}
 
@@ -96,9 +97,13 @@
                                 {{ __('Manage Account') }}
                             </div>
 
-                            <x-jet-dropdown-link href="{{ route('profile.show') }}">
+                            {{-- <x-jet-responsive-nav-link href="{{ route('profile.show') }}" :active="request()->routeIs('profile.show')">
                                 {{ __('Profile') }}
-                            </x-jet-dropdown-link>
+                            </x-jet-responsive-nav-link> --}}
+
+                            {{-- <x-jet-dropdown-link href="{{route('cajeros.create')}}">
+                                {{ __('Cajeros') }}
+                            </x-jet-dropdown-link> --}}
 
                             @if (Laravel\Jetstream\Jetstream::hasApiFeatures())
                                 <x-jet-dropdown-link href="{{ route('api-tokens.index') }}">
@@ -118,6 +123,7 @@
                                     {{ __('Logout') }}
                                 </x-jet-dropdown-link>
                             </form>
+                            
                         </x-slot>
                     </x-jet-dropdown>
                 </div>

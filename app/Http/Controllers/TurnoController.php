@@ -29,7 +29,6 @@ class TurnoController extends Controller
             'turnNumber' => $request->folio,
             'catoperation_id' => $request->operation,
         ]);
-
         return redirect()->route('ticket', ['id' => $turn->id ]);
     }
 

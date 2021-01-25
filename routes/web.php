@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TurnoController;
 use App\Http\Controllers\TicketController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\CajeroController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -26,12 +28,21 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return view('dashboard');
-})->name('dashboard');
-
 Route::get('/turno', [TurnoController::class, 'getOperations'])->name('turno.getOperations');
 Route::post('/turno', [TurnoController::class, 'store'])->name('turno');
 
 
 Route::get('ticket/{id}', [TicketController::class, 'mostrarTicket'])->name('ticket');;
+
+//Cajeros ABC
+Route::get('/cajeros', [UserController::class, 'index'])->middleware('logeado')->name('cajeros.index');
+Route::get('/cajeros/create', [UserController::class, 'create'])->middleware(['auth'])->name('cajeros.create');
+Route::get('/cajeros/{id}', [UserController::class, 'destroy'])->name('cajeros.destroy');
+
+Route::get('/cajeros', [CajeroController::class, 'mostrarCajero'])->name('fakeLogin');;
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth'])->name('dashboard');
+
+require __DIR__.'/auth.php';
