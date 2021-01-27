@@ -10,20 +10,9 @@ class CajeroController extends Controller
 {
     public function index()
     {
-        $id_user = auth()->user()->id;
-        $nameAdmin = auth()->user()->name;
-        $date = Carbon::now();
-        
-        $request->validate([
-            'caja' => 'required',
-        ]);
+        // $cashier = tblcashierbankboxer::all();
+        // return view('cashier.index');
 
-        $empleado_caja = telleremploye::create([
-            'catteller_id' => $request->caja,
-            'user_id' => $id_user,
-            'enabled' => 1,
-            'open' => $date
-        ]);
     }
 
     public function create()

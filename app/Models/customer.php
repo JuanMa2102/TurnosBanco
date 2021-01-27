@@ -13,5 +13,6 @@ class customer extends Model
         'catoperation_id',
         'turnNumber',
         'name',
+        'attended'
     ];
 }

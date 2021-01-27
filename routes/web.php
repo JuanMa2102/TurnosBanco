@@ -7,6 +7,8 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\CajeroController;
 use App\Http\Controllers\CajaController;
 use App\Http\Controllers\EmpleadoCajaController;
+use App\Http\Controllers\TurnoClienteController;
+use App\Http\Controllers\PantallaController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -41,17 +43,17 @@ Route::get('/cajeros', [UserController::class, 'index'])->middleware('logeado')-
 Route::get('/cajeros/create', [UserController::class, 'create'])->middleware(['auth'])->name('cajeros.create');
 Route::get('/cajeros/{id}', [UserController::class, 'destroy'])->name('cajeros.destroy');
 
-Route::get('/cajeros', [CajeroController::class, 'mostrarCajero'])->name('fakeLogin');;
+Route::get('/cajeros', [CajeroController::class, 'mostrarCajero'])->middleware(['auth'])->name('fakeLogin');;
 
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
 Route::post('/caja', [CajaController::class, 'store'])
-                ->middleware('guest');
+                ->middleware('auth');
 
 Route::get('/caja', [CajaController::class, 'create'])
-                ->middleware('guest')
+                ->middleware('auth')
                 ->name('register-caja');
                 
 Route::get('/caja/{id}', [CajaController::class, 'destroy'])
@@ -60,8 +62,12 @@ Route::get('/caja/{id}', [CajaController::class, 'destroy'])
 Route::POST('/empleado-caja', [CajaController::class, 'empleado_caja'])
                 ->name('empleado-caja');
 
-Route::get('AbrirCaja/{id}', [EmpleadoCajaController::class, 'abrirCaja'])->name('atender_caja');;
+Route::get('/AbrirCaja/{id}', [EmpleadoCajaController::class, 'abrirCaja'])->middleware(['auth'])->name('atender_caja');;
 
+Route::get('/turno-cliente', [TurnoClienteController::class, 'mostrarTurnos'])
+                ->name('turno-cliente');
+
+Route::get('/pantalla', [PantallaController::class, 'verTurnos'])->name('verTurnos');
 
 
 

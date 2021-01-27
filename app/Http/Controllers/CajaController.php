@@ -63,20 +63,10 @@ class CajaController extends Controller
 
     public function empleado_caja(Request $request){
         
-        // $id_user = auth()->user()->id;
-        // $nameAdmin = auth()->user()->name;
-        // $date = Carbon::now();
+        $request->validate([
+            'caja' => 'required',
+        ]);
         
-        // $request->validate([
-        //     'caja' => 'required',
-        // ]);
-
-        // $empleado_caja = telleremploye::create([
-        //     'catteller_id' => $request->caja,
-        //     'user_id' => $id_user,
-        //     'enabled' => 1,
-        //     'open' => $date
-        // ]);
         return redirect()->route('atender_caja', ['id' => $request->caja ]);
     }
 }

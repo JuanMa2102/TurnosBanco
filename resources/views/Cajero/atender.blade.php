@@ -15,5 +15,21 @@
 @endsection
 
 @section('content')
-    
+<div class="h-64 grid grid-rows-3 grid-flow-col gap-4 mt-10">
+  <div></div>
+  <div></div>
+  <div></div>
+  <div class="text-center">
+  <label>Atendiendo</label><br>
+  <label>{{$folio}}</label></div>
+  <div class="text-center">
+        
+        <a href="{{route('turno-cliente') }}" class="w-full uppercase px-8 py-2 border border-blue-600 text-blue-600 shadow-sm hover:shadow-lg">Turno Siguiente</a>
+        
+  </div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+</div>   
 @endsection

@@ -25,6 +25,7 @@ class TurnoController extends Controller
     public function store(Request $request)
     {
         $turn = customer::create([
+            'attended' => 0,
             'name' => $request->Nombre,
             'turnNumber' => $request->folio,
             'catoperation_id' => $request->operation,

@@ -18,6 +18,7 @@ class CreateCustomersTable extends Migration
             $table->foreignId('catoperation_id')->constrained();
             $table->string('turnNumber', 10);
             $table->string('name', 100);
+            $table->boolean('attended')->default(false)->nullable();
             $table->timestamps();
         });
     }

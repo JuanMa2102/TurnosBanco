@@ -7,6 +7,7 @@ use App\Http\Requests\Auth\LoginRequest;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class AuthenticatedSessionController extends Controller
 {
@@ -61,7 +62,7 @@ class AuthenticatedSessionController extends Controller
         {
             if(!auth()->user()->administrador)
             {
-                DB::table('telleremploye')
+                DB::table('telleremployes')
                 ->where('user_id', auth()->user()->id)  // find your user by their email
                 ->update(array('enabled' => 0));  // update the record in the DB. 
             }

@@ -23,6 +23,8 @@ class EmpleadoCajaController extends Controller
             'open' => $date
         ]);
 
-        return view('Cajero.atender', compact('nameAdmin'));
+        $folio = "Sin Atender";
+
+        return view('Cajero.atender', compact('nameAdmin','folio'));
     }
 }
