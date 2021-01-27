@@ -19,8 +19,8 @@
 							<x-jet-label for="operation" value="{{ __('Email') }}" />
 							<select id="operation" name="operation" class="block mt-1 w-full appearance-none">
 							@foreach ($operations as $operation)
-									<option value="{{$operation->id}}">{{$operation ->description}}</option>
-									@endforeach
+								<option value="{{$operation->id}}">{{$operation ->description}}</option>
+							@endforeach
 							</select>
 							</div>
 

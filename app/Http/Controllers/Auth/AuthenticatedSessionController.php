@@ -28,9 +28,9 @@ class AuthenticatedSessionController extends Controller
      */
     public function store(LoginRequest $request)
     {
+        
         $request->authenticate();
 
-        $request->session()->regenerate();
         //$caj = $request;
         // $users = DB::table('users')
         //         ->where('isAdmin', '<>', true)
@@ -57,6 +57,16 @@ class AuthenticatedSessionController extends Controller
      */
     public function destroy(Request $request)
     {
+        if(auth()->user()->id != null)
+        {
+            if(!auth()->user()->administrador)
+            {
+                DB::table('telleremploye')
+                ->where('user_id', auth()->user()->id)  // find your user by their email
+                ->update(array('enabled' => 0));  // update the record in the DB. 
+            }
+        }
+
         Auth::guard('web')->logout();
 
         $request->session()->invalidate();
@@ -64,5 +74,7 @@ class AuthenticatedSessionController extends Controller
         $request->session()->regenerateToken();
 
         return redirect('/');
+
+        
     }
 }

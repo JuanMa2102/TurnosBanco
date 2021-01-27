@@ -10,9 +10,20 @@ class CajeroController extends Controller
 {
     public function index()
     {
-        // $cashier = tblcashierbankboxer::all();
-        // return view('cashier.index');
+        $id_user = auth()->user()->id;
+        $nameAdmin = auth()->user()->name;
+        $date = Carbon::now();
+        
+        $request->validate([
+            'caja' => 'required',
+        ]);
 
+        $empleado_caja = telleremploye::create([
+            'catteller_id' => $request->caja,
+            'user_id' => $id_user,
+            'enabled' => 1,
+            'open' => $date
+        ]);
     }
 
     public function create()
@@ -33,13 +44,13 @@ class CajeroController extends Controller
         ->where('id', '=' ,$id_user)
         ->get();
 
-        $cajas = DB::table('cattellers')
+        $tellers = DB::table('cattellers')
         ->get();
                 
         if($cajero[0]->administrador == 1)
-            return view('administrador.index', compact('users','nameAdmin'));
+            return view('administrador.index', compact('users','nameAdmin','tellers'));
         else
-            return view('Cajero.index', compact('nameAdmin','cajas'));
+            return view('Cajero.index', compact('nameAdmin','tellers'));
     }
 
     public function show($obj)

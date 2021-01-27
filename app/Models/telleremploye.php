@@ -12,7 +12,7 @@ class telleremploye extends Model
     protected $fillable = [
         'user_id',
         'catteller_id',
-        'enable',
+        'enabled',
         'open',
         'close',
     ];

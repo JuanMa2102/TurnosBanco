@@ -30,13 +30,14 @@
             </div>
         @endif
 
-        <form method="POST" action="{{ route('login') }}">
+        <form method="POST" action="{{ route('empleado-caja') }}">
             @csrf
 
-            <select id="operation" name="operation" class="block mt-1 w-full appearance-none"></select>
-            @foreach ($cajas as $caja)
+            <select id="caja" name="caja" class="block mt-1 w-full appearance-none">
+            @foreach ($tellers as $caja)
 				<option value="{{$caja->id}}">Caja {{$caja ->numberTeller}}</option>
 			@endforeach
+            </select>
             <div class="items-center mt-4">
                 
 

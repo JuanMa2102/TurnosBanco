@@ -5,6 +5,8 @@ use App\Http\Controllers\TurnoController;
 use App\Http\Controllers\TicketController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CajeroController;
+use App\Http\Controllers\CajaController;
+use App\Http\Controllers\EmpleadoCajaController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -44,5 +46,23 @@ Route::get('/cajeros', [CajeroController::class, 'mostrarCajero'])->name('fakeLo
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
+
+Route::post('/caja', [CajaController::class, 'store'])
+                ->middleware('guest');
+
+Route::get('/caja', [CajaController::class, 'create'])
+                ->middleware('guest')
+                ->name('register-caja');
+                
+Route::get('/caja/{id}', [CajaController::class, 'destroy'])
+                ->name('caja.destroy');
+
+Route::POST('/empleado-caja', [CajaController::class, 'empleado_caja'])
+                ->name('empleado-caja');
+
+Route::get('AbrirCaja/{id}', [EmpleadoCajaController::class, 'abrirCaja'])->name('atender_caja');;
+
+
+
 
 require __DIR__.'/auth.php';

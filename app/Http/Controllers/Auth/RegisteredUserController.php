@@ -55,6 +55,10 @@ class RegisteredUserController extends Controller
                 ->where('administrador', '<>', true)
                 ->get();
         
-        return view('administrador.index', compact('users','nameAdmin'));
+        $tellers = DB::table('cattellers')
+                ->select('numberTeller','id')
+                ->get();
+        
+        return view('administrador.index', compact('users','nameAdmin','tellers'));
     }
 }

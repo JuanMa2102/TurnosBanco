@@ -18,8 +18,8 @@ class CreateTellerEmployesTable extends Migration
             $table->foreignId('user_id')->constrained();
             $table->foreignId('catteller_id')->constrained();
             $table->boolean('enabled');
-            $table->date('open');
-            $table->date('close');
+            $table->date('open')->nullable();
+            $table->date('close')->nullable();
             $table->timestamps();
         });
     }
