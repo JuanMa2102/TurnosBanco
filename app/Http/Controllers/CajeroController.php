@@ -33,13 +33,13 @@ class CajeroController extends Controller
         ->where('id', '=' ,$id_user)
         ->get();
 
-        $tellers = DB::table('cattellers')
+        $cajas = DB::table('cattellers')
         ->get();
                 
         if($cajero[0]->administrador == 1)
-            return view('administrador.index', compact('users','nameAdmin','tellers'));
+            return view('administrador.index', compact('users','nameAdmin'));
         else
-            return view('Cajero.index', compact('nameAdmin','tellers'));
+            return view('Cajero.index', compact('nameAdmin','cajas'));
     }
 
     public function show($obj)

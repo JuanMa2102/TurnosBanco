@@ -13,13 +13,14 @@ class PantallaController extends Controller
     public function verTurnos()
     {
         $date = Carbon::now()->format('Y-m-d');
-
+        
         $turnos = DB::table('customers')
                 ->where('created_at','>=', $date)
                 ->where('attended','=',0)
                 ->orderBy('created_at', 'asc')
                 ->get();
         
+
         $atendidos = DB::table('turns')
                 ->join('customers', 'turns.customer_id', '=', 'customers.id')
                 ->join('telleremployes', 'turns.telleremploye_id', '=', 'telleremployes.id')
@@ -27,11 +28,20 @@ class PantallaController extends Controller
                 ->join('catoperations','customers.catoperation_id', '=', 'catoperations.id')
                 ->select('customers.turnNumber','customers.name','cattellers.numberTeller','catoperations.description')
                 ->orderBy('turns.created_at','desc')
+                ->take(6)
                 ->get();
+                
+        if(isset($atendidos[0])){ 
+            
+            $enTurno = $atendidos[0];
+            unset($atendidos[0]);
+            
+        }
+        else{
+            $enTurno = "";
+        }
 
-
-        dd($turnos);
-
-        return view('Cliente.ticket',compact('turn','operacion'));
+        return view('Fila.pantalla',compact('enTurno','atendidos','turnos'));
+        
     }
 }

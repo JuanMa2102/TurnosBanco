@@ -69,6 +69,6 @@ Route::get('/turno-cliente', [TurnoClienteController::class, 'mostrarTurnos'])
 
 Route::get('/pantalla', [PantallaController::class, 'verTurnos'])->name('verTurnos');
 
-
+//Route::get('/mostrar-users', [PantallaController::class, 'verTurnos'])->name('rest.getMostrarUsers');
 
 require __DIR__.'/auth.php';

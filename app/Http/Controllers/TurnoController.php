@@ -17,7 +17,7 @@ class TurnoController extends Controller
             ->select('description','id')
             ->get();
 
-            $folio = DB::select('CALL getFolio');
+        $folio = DB::select('CALL getFolio');
 
         return view('Cliente.turno',compact('folio','operations'));
     }

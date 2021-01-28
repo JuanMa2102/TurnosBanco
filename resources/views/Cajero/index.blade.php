@@ -15,21 +15,8 @@
 @endsection
 
 @section('content')
-<x-jet-authentication-card>
-        <x-slot name="logo">
-            <x-jet-authentication-card-logo />
-        </x-slot>
 
-        <x-jet-label class="mb-4 text-center text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl ..." value="{{ __('INICIAR SESION') }}" />
-
-        <x-jet-validation-errors class="mb-4" />
-
-        @if (session('status'))
-            <div class="mb-4 font-medium text-sm text-green-600">
-                {{ session('status') }}
-            </div>
-        @endif
-
+<div class="grid grid-rows-3 grid-flow-col gap-4 mt-20 mx-80">   
         <form method="POST" action="{{ route('empleado-caja') }}">
             @csrf
 
@@ -41,9 +28,9 @@
             <div class="items-center mt-4">
                 
 
-                <button class="w-full bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 mb-4">
-                    {{ __('Login') }}
-                </button>
+            <div class="mt-10">
+				<button class="w-full uppercase px-8 py-2 border border-blue-600 text-blue-600 shadow-sm hover:shadow-lg">SELECCIONAR CAJA
+			</button>
                 
                 <div>
                
@@ -52,6 +39,5 @@
                 </div>
             </div>
         </form>
-    </x-jet-authentication-card>
-
+</div>
 @endsection
